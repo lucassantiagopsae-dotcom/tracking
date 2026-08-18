@@ -13,7 +13,7 @@ Every lead form page has the same five responsibilities:
 
 1. **Let the middleware run.** Don't put the page under `/api/*`,
    `/webhook/*`, or `/dash` — those paths bypass middleware and you won't
-   get a `_krob_sid` cookie, which means no session row, which means no
+   get a `_rugido_sid` cookie, which means no session row, which means no
    attribution. Any other path is fine.
 2. **Load the GA4 first-party script**:
    ```html
@@ -161,7 +161,7 @@ back navigation.
 ## What Claude should check after adding a lead page
 
 1. Visit the new page in a browser with `utm_source=test` appended.
-2. In DevTools → Application → Cookies, confirm `_krob_sid` and `_fbp` are
+2. In DevTools → Application → Cookies, confirm `_rugido_sid` and `_fbp` are
    set.
 3. Submit the form with a test email.
 4. Network tab: `/tracker` returns 200 with `{"ok": true}`.

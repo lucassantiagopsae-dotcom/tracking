@@ -20,9 +20,9 @@ Confirm with the recipient before starting:
 
 If the recipient is running sales-page checkpoints (3 through 6), ask which sales platform they're using (`eduzz`, `hotmart`, or `kiwify`) and call it `PLATFORM`.
 
-## Checkpoint 1 — Edge middleware generates `_krob_sid` and writes to `sessions`
+## Checkpoint 1 — Edge middleware generates `_rugido_sid` and writes to `sessions`
 
-**What to check**: when a visitor hits any page, the middleware should set a `_krob_sid` cookie and upsert a row in the `sessions` table with `fbp`, `external_id`, and any UTMs present in the URL.
+**What to check**: when a visitor hits any page, the middleware should set a `_rugido_sid` cookie and upsert a row in the `sessions` table with `fbp`, `external_id`, and any UTMs present in the URL.
 
 **How to verify**:
 
@@ -74,7 +74,7 @@ wrangler d1 execute ${DB_NAME} --remote --command \
 
 **FAIL modes**:
 - **Zero rows.** The recipient hasn't visited a sales page yet, or the sales page isn't calling `/checkout-session` on load. Ask them to visit their sales page URL once. If still no row, read their sales page HTML and confirm it has the `persistCheckoutSession()` IIFE from `examples/sales-page/index.html`.
-- **Row exists but `session_id` is empty.** The `_krob_sid` cookie didn't reach the `/checkout-session` fetch. Usually means the sales page was loaded in a new tab with no prior visit, or cookies are being blocked (Safari ITP third-party, or the recipient's dev browser has cookies disabled). Ask them to visit the sales page in a fresh normal Chrome window.
+- **Row exists but `session_id` is empty.** The `_rugido_sid` cookie didn't reach the `/checkout-session` fetch. Usually means the sales page was loaded in a new tab with no prior visit, or cookies are being blocked (Safari ITP third-party, or the recipient's dev browser has cookies disabled). Ask them to visit the sales page in a fresh normal Chrome window.
 - **`fbp` / `fbc` are empty but `session_id` is present.** The session row exists but has no `fbp`/`fbc` — go back to Checkpoint 1 and check why middleware isn't setting them.
 
 ## Checkpoint 4 — Sales platform forwards `trk` back in the webhook payload

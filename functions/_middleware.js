@@ -36,8 +36,8 @@ export async function onRequest(context) {
 
   // --- Read existing cookies ---
   const cookies = parseCookies(request.headers.get('Cookie') || '');
-  let sessionId = cookies['_krob_sid'] || '';
-  let externalId = cookies['_krob_eid'] || '';
+  let sessionId = cookies['_rugido_sid'] || '';
+  let externalId = cookies['_rugido_eid'] || '';
   let existingFbc = cookies['_fbc'] || '';
   let existingFbp = cookies['_fbp'] || '';
 
@@ -83,8 +83,8 @@ export async function onRequest(context) {
   const cookieBase = `Path=/; Max-Age=${maxAge}; SameSite=Lax; Secure`;
 
   const newHeaders = new Headers(response.headers);
-  newHeaders.append('Set-Cookie', `_krob_sid=${sessionId}; ${cookieBase}`);
-  newHeaders.append('Set-Cookie', `_krob_eid=${externalId}; ${cookieBase}`);
+  newHeaders.append('Set-Cookie', `_rugido_sid=${sessionId}; ${cookieBase}`);
+  newHeaders.append('Set-Cookie', `_rugido_eid=${externalId}; ${cookieBase}`);
   newHeaders.append('Set-Cookie', `_fbp=${fbp}; ${cookieBase}`);
 
   if (fbc) {

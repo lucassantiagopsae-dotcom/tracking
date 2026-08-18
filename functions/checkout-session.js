@@ -25,7 +25,7 @@ export async function onRequestPost(context) {
 
     // Enrich with D1 session data (server-captured fbp/fbc are more reliable)
     let sessionData = {};
-    const sessionId = cookies['_krob_sid'] || '';
+    const sessionId = cookies['_rugido_sid'] || '';
     if (sessionId && env.DB) {
       try {
         const row = await env.DB.prepare(
@@ -40,7 +40,7 @@ export async function onRequestPost(context) {
     // Priority: client cookies (set by Pixel JS) → D1 session (middleware) → body fallback
     const fbp = cookies['_fbp'] || sessionData.fbp || body.fbp || '';
     const fbc = cookies['_fbc'] || sessionData.fbc || body.fbc || '';
-    const externalId = cookies['_krob_eid'] || sessionData.external_id || body.external_id || '';
+    const externalId = cookies['_rugido_eid'] || sessionData.external_id || body.external_id || '';
     const gclid = sessionData.gclid || body.gclid || '';
     const gbraid = body.gbraid || '';
     const wbraid = body.wbraid || '';

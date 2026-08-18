@@ -838,7 +838,7 @@
     // visit if the buyer is returning (e.g. bounced off checkout and came
     // back). Stored in sessionStorage so it survives refreshes within the
     // same tab but not across days.
-    const STORAGE_KEY = 'krob_trk';
+    const STORAGE_KEY = 'rugido_trk';
     let trk = sessionStorage.getItem(STORAGE_KEY);
     if (!trk) {
       trk = crypto.randomUUID();

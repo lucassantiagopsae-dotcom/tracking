@@ -17,10 +17,10 @@ Every sales page has six responsibilities beyond the lead-form list:
 3. **Generate a `trk` UUID** on page load and persist it in
    `sessionStorage` so refreshes within the tab reuse it:
    ```js
-   let trk = sessionStorage.getItem('krob_trk');
+   let trk = sessionStorage.getItem('rugido_trk');
    if (!trk) {
      trk = crypto.randomUUID();
-     sessionStorage.setItem('krob_trk', trk);
+     sessionStorage.setItem('rugido_trk', trk);
    }
    ```
 4. **POST the trk + UTMs to `/checkout-session`** on page load so the

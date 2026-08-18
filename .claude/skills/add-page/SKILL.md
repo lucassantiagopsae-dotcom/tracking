@@ -151,7 +151,7 @@ Then run the smoke test that matches the page type.
 ### Lead form smoke test
 
 1. Open `https://<pages-domain>/<path>?utm_source=test_claude` in a browser.
-2. Open DevTools → Application → Cookies and confirm `_krob_sid` is set.
+2. Open DevTools → Application → Cookies and confirm `_rugido_sid` is set.
 3. Submit the form with a test email (`claude-test@example.com` is fine).
 4. DevTools → Network: `/tracker` should return 200 with `{"ok": true}`.
 5. Query D1:
@@ -168,7 +168,7 @@ Hop 1 and walk forward until you find the break.
 ### Sales page smoke test
 
 1. Open `https://<pages-domain>/<path>?utm_source=test_claude` in a browser.
-2. Cookies check: `_krob_sid` and `_fbp` should be set.
+2. Cookies check: `_rugido_sid` and `_fbp` should be set.
 3. DevTools → Network: `/checkout-session` should return 200 on page
    load.
 4. Query D1 to confirm the row:

@@ -18,7 +18,7 @@ export async function onRequestPost(context) {
 
     // --- Session enrichment from D1 ---
     let sessionData = {};
-    const sessionId = cookies['_krob_sid'] || '';
+    const sessionId = cookies['_rugido_sid'] || '';
     if (sessionId && env.DB) {
       try {
         const row = await env.DB.prepare(
@@ -33,7 +33,7 @@ export async function onRequestPost(context) {
     // --- Resolve fbp/fbc with fallback chain ---
     const fbp = validateFbCookie(userData.fbp) || validateFbCookie(cookies['_fbp']) || validateFbCookie(sessionData.fbp) || '';
     const fbc = validateFbCookie(sessionData.fbc) || validateFbCookie(cookies['_fbc']) || validateFbCookie(userData.fbc) || '';
-    const externalId = userData.external_id || cookies['_krob_eid'] || sessionData.external_id || '';
+    const externalId = userData.external_id || cookies['_rugido_eid'] || sessionData.external_id || '';
 
     // Track sources for analytics
     const fbpSource = userData.fbp ? 'pixel_js'

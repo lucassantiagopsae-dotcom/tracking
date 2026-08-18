@@ -52,7 +52,7 @@ purchase with its original attribution.
 
 | Identifier | Origin | Storage | Used by |
 |---|---|---|---|
-| `_krob_sid` | Middleware, UUID per visit | 400d cookie + `sessions` row | Joins every event to its originating visit |
+| `_rugido_sid` | Middleware, UUID per visit | 400d cookie + `sessions` row | Joins every event to its originating visit |
 | `fbp` | Middleware, Meta spec `fb.2.{ts}.{rand}` | Cookie + `sessions.fbp` | Meta CAPI |
 | `fbc` | Middleware, derived from `fbclid` URL param | Cookie + `sessions.fbc` | Meta CAPI |
 | `ga_client_id` | Parsed from GA4's `_ga` cookie at edge | `checkout_sessions.ga_client_id` | GA4 Measurement Protocol |
@@ -108,7 +108,7 @@ Hop-by-hop debugging bible: `docs/data-flow.md`
 
 | Path | Purpose |
 |---|---|
-| `_middleware.js` | Runs on every page request. Generates `_krob_sid`, captures `fbclid`/`gclid`/UTMs, computes `SUB_DOMAIN_INDEX` from the Host header, sets 400-day cookies, upserts `sessions`. Skips `/tracker`, `/webhook/*`, `/api/*`, `/dash`. |
+| `_middleware.js` | Runs on every page request. Generates `_rugido_sid`, captures `fbclid`/`gclid`/UTMs, computes `SUB_DOMAIN_INDEX` from the Host header, sets 400-day cookies, upserts `sessions`. Skips `/tracker`, `/webhook/*`, `/api/*`, `/dash`. |
 | `tracker.js` | `POST /tracker` — client events. Hashes PII, fires Meta CAPI + GA4 MP, logs to `event_log` (PageView skipped). |
 | `checkout-session.js` | `POST /checkout-session` — persists `trk` + attribution when a sales-page loads or a checkout button fires. |
 | `scripts/[[path]].js` | First-party proxy for `gtag.js`. Example pages load GA4 via `/scripts/gtag.js?id=...`. |

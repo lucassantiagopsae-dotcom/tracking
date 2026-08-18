@@ -32,7 +32,7 @@ the identifier-capture middleware, but nothing else.
 
 ```
 browser visits page
-   → _middleware.js (sets _krob_sid, _fbp, _fbc cookies, upserts sessions row)
+   → _middleware.js (sets _rugido_sid, _fbp, _fbc cookies, upserts sessions row)
    → page HTML loads (GA4 + Meta Pixel in the head)
    → user submits form / clicks CTA
    → client JS calls fetch('/tracker', {...})
@@ -83,7 +83,7 @@ which ad they came from.
 Runs on every HTML page request (static assets, API calls, and
 `/webhook/*` / `/api/*` / `/dash` are excluded). Responsibilities:
 
-- Read cookies; generate `_krob_sid` and `_krob_eid` UUIDs if missing.
+- Read cookies; generate `_rugido_sid` and `_rugido_eid` UUIDs if missing.
 - Parse `fbclid` / `gclid` / `msclkid` from the raw query string (not
   `searchParams.get()` — that URL-decodes and Meta wants the raw value).
 - Compute `SUB_DOMAIN_INDEX` from the Host header so `fb.1.*` / `fb.2.*`

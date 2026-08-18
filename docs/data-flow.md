@@ -27,9 +27,9 @@ SELECT * FROM sessions WHERE session_id = 'b9e1…';
 
 **What happens** (see `functions/_middleware.js`):
 
-1. Read cookies. Extract `_krob_sid`, `_krob_eid`, `_fbp`, `_fbc` if
+1. Read cookies. Extract `_rugido_sid`, `_rugido_eid`, `_fbp`, `_fbc` if
    present.
-2. If `_krob_sid` missing → `crypto.randomUUID()`. Same for `_krob_eid`.
+2. If `_rugido_sid` missing → `crypto.randomUUID()`. Same for `_rugido_eid`.
 3. Read raw query string (not decoded) for `fbclid`, `gclid`, `msclkid`.
 4. Read `utm_*` from `searchParams`.
 5. Compute `SUB_DOMAIN_INDEX` from the Host header (1 for `.com`, 2 for
@@ -99,7 +99,7 @@ handler.
 **What happens** (`functions/tracker.js`):
 
 1. Parse the body, read cookies, SELECT the `sessions` row by
-   `_krob_sid`.
+   `_rugido_sid`.
 2. Resolve `fbp` / `fbc` / `external_id` with fallback:
    - `fbp`: body → cookie → sessions row.
    - `fbc`: sessions row → cookie → body.
@@ -191,7 +191,7 @@ raw_email:        alice@example.com
 
 **What happens** (`functions/checkout-session.js`):
 
-1. Read cookies, read body, SELECT sessions by `_krob_sid`.
+1. Read cookies, read body, SELECT sessions by `_rugido_sid`.
 2. Build the enriched row: `fbp` from cookie → sessions → body;
    `gclid` from sessions → body; `ga_client_id` parsed from `_ga` cookie.
 3. `INSERT OR REPLACE INTO checkout_sessions` (keyed by `trk`).

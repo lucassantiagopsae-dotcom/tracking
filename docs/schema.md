@@ -11,15 +11,15 @@ skipped in prod history and is intentionally absent here.
 
 ## `sessions`
 
-One row per visitor. Keyed by `session_id` (the `_krob_sid` cookie).
+One row per visitor. Keyed by `session_id` (the `_rugido_sid` cookie).
 Written by `functions/_middleware.js` via UPSERT on every HTML page load.
 Read by `functions/tracker.js` and `functions/checkout-session.js` to
 enrich outgoing events with server-captured attribution.
 
 | Column | Type | Purpose |
 |---|---|---|
-| `session_id` | TEXT PK | UUID, matches `_krob_sid` cookie |
-| `external_id` | TEXT | UUID, matches `_krob_eid` cookie — used as Meta Advanced Matching `external_id` |
+| `session_id` | TEXT PK | UUID, matches `_rugido_sid` cookie |
+| `external_id` | TEXT | UUID, matches `_rugido_eid` cookie — used as Meta Advanced Matching `external_id` |
 | `fbclid` | TEXT | Raw value from URL, undecoded |
 | `gclid` | TEXT | Google Ads click id |
 | `msclkid` | TEXT | Microsoft Ads click id |
